@@ -1,0 +1,2 @@
+ Preserve the exact scene appearance, framing and lighting of Picture 1.
+ The first frame matches Picture 1; preserve its scene appearance and lighting.

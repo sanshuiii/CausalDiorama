@@ -1,0 +1,10 @@
+{
+ "code": "/opt/causal_diorama",
+ "work": "/shared/cd/work",
+ "shared": "/shared/cd/shared",
+ "queue": "/shared/cd/shared",
+ "node": "/opt/cd_node",
+ "node_runs": "/opt/cd_node/runs",
+ "ffmpeg": "/usr/local/bin/ffmpeg",
+ "nodes": ["gpu-0"]
+}

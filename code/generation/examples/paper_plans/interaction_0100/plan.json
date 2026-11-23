@@ -1,0 +1,120 @@
+{
+  "schema": "cb-scm-v1",
+  "scene_id": "interaction_0100",
+  "fps": 24,
+  "frames": 124,
+  "C": {
+    "id": "camera",
+    "controller": "fixed",
+    "position": [0.0, 1.3, 0.0],
+    "target": [0.0, 0.75, 5.0],
+    "vertical_fov_deg": 35,
+    "motion": "Fixed camera."
+  },
+  "style": "photorealistic live-action footage, warm natural daylight colours with soft greens and earthy browns",
+  "background": {
+    "appearance": "A sunny backyard vegetable bed of freshly turned dark brown soil, bordered by low wooden planks, with a green lawn around it, a wooden fence and leafy hedge behind, and a clear blue sky in soft afternoon light."
+  },
+  "environment": {
+    "ground": {"semantic": "terrain", "color": [0.36, 0.26, 0.17]},
+    "sky": true,
+    "backdrop": [
+      {"id": "hedge", "z": 11.0, "x_range": [-12, 12], "height": 2.2, "semantic": "vegetation", "color": [0.2, 0.45, 0.2]}
+    ],
+    "static_props": [],
+    "description": "A sunny backyard garden bed of dark, freshly dug soil with a lawn around it and a hedge behind, warm afternoon daylight, photorealistic."
+  },
+  "E": [
+    {
+      "id": "parent",
+      "type": "human",
+      "instance_id": 1,
+      "layer": "foreground",
+      "label": "parent",
+      "height_m": 1.75,
+      "appearance": "an adult parent, a woman in her thirties with tied-back brown hair, wearing a light blue denim shirt, khaki trousers, green gardening gloves and rubber boots",
+      "position": [-1.35, 0.0, 5.0],
+      "heading_deg": 90
+    },
+    {
+      "id": "child",
+      "type": "human",
+      "instance_id": 2,
+      "layer": "foreground",
+      "label": "child",
+      "height_m": 1.2,
+      "appearance": "a young child of about seven with short dark hair, wearing a yellow t-shirt, blue overalls, small red gardening gloves and red rubber boots",
+      "position": [1.35, 0.0, 5.0],
+      "heading_deg": -90
+    },
+    {
+      "id": "plant_1",
+      "type": "object",
+      "instance_id": 3,
+      "layer": "foreground",
+      "label": "plant",
+      "size_m": [0.4, 0.5, 0.4],
+      "shape": "ellipsoid",
+      "semantic": "vegetation",
+      "position": [-0.45, 0.0, 4.6],
+      "appearance": "a young green leafy tomato seedling planted in the dark soil, bright green leaves on a thin stem"
+    },
+    {
+      "id": "plant_2",
+      "type": "object",
+      "instance_id": 4,
+      "layer": "foreground",
+      "label": "plant",
+      "size_m": [0.4, 0.5, 0.4],
+      "shape": "ellipsoid",
+      "semantic": "vegetation",
+      "position": [0.45, 0.0, 4.6],
+      "appearance": "a young green leafy pepper seedling planted in the dark soil, broad bright green leaves on a short stem"
+    }
+  ],
+  "S": [
+    {"id": "parent_path", "entity": "parent", "kind": "root_track", "interp": "linear", "keyframes": [[0.0, [-1.35, 5.0]], [5.17, [-1.35, 5.0]]], "heading": 90},
+    {"id": "child_path", "entity": "child", "kind": "root_track", "interp": "linear", "keyframes": [[0.0, [1.35, 5.0]], [5.17, [1.35, 5.0]]], "heading": -90}
+  ],
+  "R": [],
+  "D": [
+    {"from": "E.parent", "to": "text.scene", "why": "parent's position and look are restated in the scene text"},
+    {"from": "E.child", "to": "text.scene", "why": "child's position and look are restated in the scene text"},
+    {"from": "E.plant_*", "to": "text.timeline", "why": "the two plants are planted, nurtured and grow in every interval"},
+    {"from": "C.position", "to": "intent.requirements", "why": "camera distance keeps the child and the plants large enough"}
+  ],
+  "text": {
+    "scene": "Fixed eye-level camera facing a sunny backyard garden bed of dark soil with a lawn and hedge behind. At t = 0, on the left side of the frame stands the parent, a woman in a light blue denim shirt, khaki trousers and green gardening gloves, filling about half of the frame height and facing screen right toward the plants. On the right side of the frame stands the child, about seven, in a yellow t-shirt, blue overalls and red gloves, filling about a third of the frame height and facing screen left toward the plants. Between them in the lower centre of the frame, slightly closer to the camera, are two small green seedlings in the soil: a tomato seedling left of centre and a pepper seedling right of centre, each about a fifth of the frame height. The parent and child are at the same distance from the camera, side by side with the plants between them.",
+    "timeline": [
+      [0.0, 1.7, "The parent in the denim shirt on the left bends down and plants the tomato seedling, pressing soil around it with gloved hands, while the child in the yellow t-shirt on the right kneels and plants the pepper seedling, patting the soil around its stem; the two seedlings stay between them in the lower centre."],
+      [1.7, 3.4, "The parent in the denim shirt on the left nurtures the plants, gently sprinkling water over the tomato seedling from cupped hands, while the child in the yellow t-shirt on the right nurtures the plants, carefully loosening the soil and smoothing the leaves of the pepper seedling."],
+      [3.4, 5.17, "The parent in the denim shirt on the left and the child in the yellow t-shirt on the right crouch beside the bed, watching the two plants grow: the tomato and pepper seedlings visibly grow taller and unfold new green leaves, and the parent and child smile at each other while watching them grow."]
+    ],
+    "constraints": [
+      "Exactly one parent and exactly one child; no other people.",
+      "Exactly two plants, both remaining in the soil between the parent and the child.",
+      "The parent stays on the left and the child stays on the right for the whole shot.",
+      "No on-screen text; fixed camera."
+    ]
+  },
+  "intent": {
+    "expressiveness": "partial",
+    "expressiveness_reason": "Proxies place the parent, child and two plants; planting, nurturing and the plants growing are carried by text only.",
+    "requirements": [
+      {"id": "r1", "kind": "present", "entities": ["parent", "child", "plant_1", "plant_2"]},
+      {"id": "r2", "kind": "count", "noun": "plant", "n": 2, "entities": ["plant_1", "plant_2"]},
+      {"id": "r3", "kind": "relation", "a": "parent", "rel": "left_of", "b": "child"},
+      {"id": "r4", "kind": "relation", "a": "plant_1", "rel": "right_of", "b": "parent"},
+      {"id": "r5", "kind": "relation", "a": "plant_2", "rel": "left_of", "b": "child"},
+      {"id": "r6", "kind": "action", "entity": "parent", "phrase": "plants", "interval": [0.0, 1.7]},
+      {"id": "r7", "kind": "action", "entity": "child", "phrase": "plants", "interval": [0.0, 1.7]},
+      {"id": "r8", "kind": "action", "entity": "parent", "phrase": "nurtures the plants", "interval": [1.7, 3.4]},
+      {"id": "r9", "kind": "action", "entity": "child", "phrase": "nurtures the plants", "interval": [1.7, 3.4]},
+      {"id": "r10", "kind": "action", "entity": "parent", "phrase": "watching them grow", "interval": [3.4, 5.17]},
+      {"id": "r11", "kind": "action", "entity": "child", "phrase": "watching them grow", "interval": [3.4, 5.17]},
+      {"id": "r12", "kind": "attribute", "entity": "plant_1", "phrase": "green"},
+      {"id": "r13", "kind": "attribute", "entity": "plant_2", "phrase": "green"}
+    ]
+  },
+  "notes": "Garden is the background place. Plant count is not given; two seedlings are used as the minimal plural. Growth cannot be shown by rigid proxies so it is text only. No holds: planting is done in place by hands without carrying."
+}

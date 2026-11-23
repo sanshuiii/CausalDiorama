@@ -1,0 +1,1 @@
+<Subject 1> is environment: {BG} Its look follows <Picture {PIC}>; it contains none of the other subjects.

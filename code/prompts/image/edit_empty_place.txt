@@ -1,0 +1,1 @@
+Image 1 shows an empty place. Show the same place from the same viewpoint, changed only as follows: {CHANGES}. It stays completely empty: no people, no animals, no vehicles, no furniture and no objects. Landscape picture, no text.

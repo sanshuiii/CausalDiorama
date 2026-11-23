@@ -1,0 +1,12 @@
+id,category,name,paper_run,paper_run_rescored,this_code_paper_plans,this_code_replanned,video_this_code_vs_paper
+consistent_attr_0028,consistent_attr,0028,0.9286,0.9286,0.9286,0.9524,pixel-identical
+dynamic_attr_0003,dynamic_attr,0003,0.0000,0.0000,0.0000,0.1600,PSNR 40.02 dB
+dynamic_attr_0021,dynamic_attr,0021,0.1600,0.1600,0.0000,0.0000,PSNR 46.67 dB
+spatial_0006,spatial,0006,1.0000,1.0000,1.0000,1.0000,pixel-identical
+spatial_0086,spatial,0086,0.2647,0.2647,0.2647,0.4271,pixel-identical
+motion_0053,motion,0053,0.6844,0.6839,0.6835,0.6301,pixel-identical
+motion_0120,motion,0120,0.6883,0.6828,0.6869,0.5354,PSNR 41.38 dB
+action_binding_0058,action_binding,0058,0.5556,0.5556,0.5556,0.5556,pixel-identical
+interaction_0100,interaction,0100,1.0000,1.0000,1.0000,0.9630,pixel-identical
+numeracy_0107,numeracy,0107,0.2500,0.2500,0.3125,0.8750,PSNR 42.61 dB
+mean,,,0.5532,0.5526,0.5432,0.6098,6/10 pixel-identical

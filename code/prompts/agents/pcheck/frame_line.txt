@@ -1,0 +1,1 @@
+- {PATH}: the whole frame with every box and its entity label

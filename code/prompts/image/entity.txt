@@ -1,0 +1,1 @@
+A picture of {APP} ({LABEL}), {VIEW}, the whole {WHAT} visible in the centre, isolated on a plain light-grey background, even soft light, no other objects, no people, no text. Picture style: {STYLE}.

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Causal Dioramas</title>
+<meta name="description" content="Causal Dioramas: Controllable Video Generation, Revision and Editing via Intervention">
+<link rel="icon" href="static/images/logo.png">
+<link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="logo" src="static/images/logo.png" alt="">
+    <h1>Causal Dioramas: Controllable Video Generation,<br>Revision and Editing via Intervention</h1>
+    <p class="authors"></p>
+    <div class="buttons">
+      <a class="btn" href="https://github.com/sanshuiii/CausalDiorama/raw/main/paper/CausalDiorama.pdf">
+        <svg viewBox="0 0 24 24"><path d="M6 2h8l6 6v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1.5V9h5.5L13 3.5zM8 13h8v1.5H8V13zm0 3h8v1.5H8V16z"/></svg>Paper</a>
+      <a class="btn disabled" aria-disabled="true" title="Coming soon">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16v2H4zm0 7h16v2H4zm0 7h16v2H4z"/></svg>arXiv</a>
+      <a class="btn" href="https://github.com/sanshuiii/CausalDiorama">
+        <svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>Code</a>
+      <a class="btn" href="#video">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video</a>
+    </div>
+  </div>
+</header>
+
+<section id="video" style="padding-top:8px">
+  <div class="wrap video-hero">
+    <video controls preload="metadata" poster="static/images/pv_poster.jpg">
+      <source src="static/videos/pv.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+<section id="abstract">
+  <div class="wrap">
+    <p class="tldr"><b>TL;DR.</b> A Causal Diorama decomposes a video into a concept graph of variables that can be intervened on individually, so that one framework generates finely controllable videos from text, and revises generated videos and edits real videos by intervention, faithful to the instruction while preserving the unaffected content.</p>
+    <h2>Abstract</h2>
+    <p class="abstract">Two centuries ago, an early cinema-like theater called the Diorama could already control its scenes at will. Today's video generation models produce videos of near-cinematic quality, yet they still lack this controllability. This limitation stems from the inherent semantic gap between text and pixels, since a prompt can describe a video only coarsely and leaves its details and relations beyond control. We bring this ability to video generation with Causal Dioramas, modules that decompose a video into a concept graph of variables that can be intervened on individually. Each instruction is translated into an intervention on the concept graph, modifying the specified concepts and their dependents. A connector then conveys this intervention to the video generator, which reuses the original noise to produce a counterfactual video while preserving all other content. Building on Causal Dioramas, we develop a unified framework for controllable generation, counterfactual revision of generated videos and editing of real videos. We outperform both open-source and commercial models in controllability on T2V-CompBench, CoVEBench and OpenVE-Bench.</p>
+  </div>
+</section>
+
+<section id="teaser" class="alt">
+  <div class="wrap">
+    <h2>Generation, Revision and Editing</h2>
+    <p class="muted">Generation builds the Causal Diorama from the prompt and renders it under sampled noise, whereas revision and editing intervene on it with an instruction. The Causal Diorama of a generated video is known exactly, while that of a real video has to be inferred. Our method completes every task and preserves the unaffected content, while the other methods leave the task incomplete or introduce unintended changes.</p>
+    <figure>
+      <img src="static/images/teaser.png" alt="Comparisons between the Causal Diorama and others on generation, revision and editing">
+    </figure>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <h2>Intervention on the Causal Diorama</h2>
+    <p class="muted">An illustration of how an intervention takes place. <b>Source</b> shows a Causal Diorama to be intervened on: the concept graph of a generated video in which the player in red passes to the player in blue, who catches and shoots. <b>Intervention</b> shows how the instruction is translated into a change of the Causal Diorama. <b>Without dependencies</b> shows what goes wrong when the causal relations are not taken into account.</p>
+    <div id="m-choices" class="choices3"></div>
+    <div class="method-demo2">
+      <div class="m-left">
+        <div class="m-instr" id="m-instruction"></div>
+        <div id="m-graph" class="graph-box"></div>
+      </div>
+      <div id="m-result" class="m-right"></div>
+    </div>
+  </div>
+</section>
+
+<section id="multiverse" class="alt">
+  <div class="wrap">
+    <h2>One Diorama, a Multiverse</h2>
+    <p class="muted">Every world below is an edit of the same real video, with the background, the subject or its motion changed. The Causal Diorama and the exogenous noise are recovered from the video only once. Each variant is an intervention on the Causal Diorama, and the video regenerated under the same noise is its counterfactual.</p>
+    <div id="mv-grid" class="mvgrid-wrap"></div>
+  </div>
+</section>
+
+
+<section id="generation-sec">
+  <div class="wrap">
+    <h2>Generation Gallery</h2>
+    <p class="muted">Videos generated from a prompt. Use the arrows, or swipe, to move between clips.</p>
+    <div id="gallery-gen"></div>
+  </div>
+</section>
+
+<section id="revision-sec" class="alt">
+  <div class="wrap">
+    <h2>Revision Gallery</h2>
+    <p class="muted">Revisions of our generated videos. Drag the handle to compare the original with the revision; use the arrows, or swipe, to move between clips.</p>
+    <div id="gallery-rev"></div>
+  </div>
+</section>
+
+<section id="editing-sec">
+  <div class="wrap">
+    <h2>Editing Gallery</h2>
+    <p class="muted">More editing results on real videos. Use the arrows, or swipe, to move between clips.</p>
+    <div id="gallery-edit"></div>
+  </div>
+</section>
+
+
+<footer><div class="wrap"></div></footer>
+
+<script src="static/js/cases.js"></script>
+<script src="static/js/main.js"></script>
+<script src="static/js/graph.js"></script>
+<script src="static/js/gallery.js"></script>
+<script src="static/js/mvgrid.js"></script>
+</body>
+</html>

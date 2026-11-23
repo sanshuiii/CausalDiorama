@@ -1,0 +1,85 @@
+{
+  "schema": "cb-scm-v1",
+  "scene_id": "spatial_0086",
+  "fps": 24,
+  "frames": 124,
+  "C": {
+    "id": "camera",
+    "controller": "fixed",
+    "position": [0.0, 0.6, 0.0],
+    "target": [0.0, 0.45, 6.0],
+    "vertical_fov_deg": 35,
+    "motion": "Fixed camera."
+  },
+  "style": "photorealistic live-action footage, natural warm daylight colours",
+  "background": {
+    "appearance": "An empty open savanna field of short dry golden grass under a clear pale-blue sky, a line of distant low acacia trees and bushes on the horizon, soft warm afternoon sunlight."
+  },
+  "environment": {
+    "ground": {"semantic": "terrain", "color": [0.72, 0.62, 0.38]},
+    "sky": true,
+    "backdrop": [
+      {"id": "tree_line", "z": 40.0, "x_range": [-40, 40], "height": 4.0, "semantic": "vegetation", "color": [0.35, 0.42, 0.22]}
+    ],
+    "static_props": [],
+    "description": "Open savanna with short dry golden grass, distant acacia tree line, clear sky, warm afternoon sunlight, photorealistic."
+  },
+  "E": [
+    {
+      "id": "lion",
+      "type": "animal",
+      "instance_id": 1,
+      "layer": "foreground",
+      "label": "lion",
+      "appearance": "an adult male lion with tawny golden fur and a thick dark-brown mane, sitting upright on its haunches, facing the camera",
+      "size_m": [1.6, 1.15, 0.7]
+    },
+    {
+      "id": "chicken",
+      "type": "object",
+      "instance_id": 2,
+      "layer": "foreground",
+      "label": "chicken",
+      "appearance": "a brown hen chicken with reddish-brown feathers, a red comb and wattles, and yellow legs, standing in side profile facing screen left",
+      "size_m": [0.4, 0.45, 0.25],
+      "shape": "ellipsoid",
+      "semantic": "animal",
+      "position": [-0.25, 0.0, 3.0],
+      "heading_deg": -90
+    }
+  ],
+  "S": [
+    {"id": "lion_root", "entity": "lion", "kind": "root_track", "interp": "linear", "keyframes": [[0.0, [0.0, 6.0]], [5.17, [0.0, 6.0]]], "heading": 180}
+  ],
+  "R": [],
+  "D": [
+    {"from": "E.chicken", "to": "E.lion", "why": "The chicken must stay nearer the camera at about half the lion's distance, slightly left so it only partly overlaps the lion."},
+    {"from": "C.position", "to": "E.*", "why": "Camera distance keeps both animals above 15% of the frame height."}
+  ],
+  "text": {
+    "scene": "A fixed, eye-level camera looks across an open savanna of short golden grass on a sunny afternoon. In the centre of the frame, farther away, a tawny adult male lion with a dark-brown mane sits upright on its haunches facing the camera, filling about 30% of the frame height. In the foreground, closer to the camera and slightly left of centre and lower in the frame, a brown hen chicken with a red comb stands in side profile facing screen left, about 24% of the frame height, partly blocking the lower-left part of the lion's front legs; the lion is behind the chicken, farther away and partly hidden behind it.",
+    "timeline": [
+      [0.0, 2.5, "The tawny maned lion sits upright on its haunches in the centre, behind the brown hen chicken, farther away and partly hidden behind it; the brown hen chicken stands in the foreground slightly left of centre, closer to the camera, partly blocking the lion's front legs, and looks around."],
+      [2.5, 5.17, "The tawny maned lion keeps sitting calmly behind the brown hen chicken, farther away and partly hidden behind it, breathing and blinking; the brown hen chicken keeps standing in the foreground, closer to the camera, partly blocking the lion's front legs, turning its head slightly."]
+    ],
+    "constraints": [
+      "Exactly one lion and exactly one chicken.",
+      "The lion stays sitting behind the chicken (farther from the camera) for the whole shot.",
+      "The lion does not stand up, walk or attack; neither animal leaves the frame.",
+      "No people, no other animals, no on-screen text."
+    ]
+  },
+  "intent": {
+    "expressiveness": "partial",
+    "expressiveness_reason": "The proxies fix the depth order and screen placement of the lion behind the chicken; the lion's sitting pose is carried only by text.",
+    "requirements": [
+      {"id": "r1", "kind": "present", "entities": ["lion", "chicken"]},
+      {"id": "r2", "kind": "count", "noun": "lion", "n": 1, "entities": ["lion"]},
+      {"id": "r3", "kind": "count", "noun": "chicken", "n": 1, "entities": ["chicken"]},
+      {"id": "r4", "kind": "relation", "a": "lion", "rel": "behind", "b": "chicken"},
+      {"id": "r5", "kind": "action", "entity": "lion", "phrase": "sits"},
+      {"id": "r6", "kind": "attribute", "entity": "lion", "phrase": "sitting"}
+    ]
+  },
+  "notes": "Lion at 6 m, chicken at 3 m (half the distance), chicken offset 0.25 m left so it overlaps only the lion's lower-left part. Camera at 0.6 m height, eye level for the animals."
+}

@@ -1,0 +1,1 @@
+- Candidate 1 ({IMG}): image 0 itself, unchanged (no entity of the list was found in image 0).

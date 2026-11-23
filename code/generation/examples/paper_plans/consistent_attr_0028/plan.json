@@ -1,0 +1,101 @@
+{
+  "schema": "cb-scm-v1",
+  "scene_id": "consistent_attr_0028",
+  "fps": 24,
+  "frames": 124,
+  "C": {
+    "id": "camera",
+    "controller": "fixed",
+    "position": [0.0, 1.0, 0.0],
+    "target": [0.0, 0.6, 6.0],
+    "vertical_fov_deg": 35,
+    "motion": "Fixed camera."
+  },
+  "style": "photorealistic live-action footage, natural daylight colours",
+  "background": {
+    "appearance": "An empty paved grey asphalt lot in front of a plain light-grey concrete wall, under a clear blue daytime sky with soft natural sunlight."
+  },
+  "environment": {
+    "ground": {"semantic": "road_paved", "color": [0.45, 0.45, 0.47]},
+    "sky": true,
+    "backdrop": [
+      {"id": "wall_1", "z": 14.0, "x_range": [-20, 20], "height": 5.0, "semantic": "building_structure", "color": [0.75, 0.75, 0.72]}
+    ],
+    "static_props": [],
+    "description": "A flat paved grey asphalt lot with a plain light-grey concrete wall behind it, clear blue sky, soft natural daylight, photorealistic."
+  },
+  "E": [
+    {
+      "id": "bin",
+      "type": "object",
+      "instance_id": 1,
+      "layer": "foreground",
+      "label": "bin",
+      "appearance": "a cylindrical green plastic trash bin lying on its side, round body with ribbed sides, its round black base facing the camera",
+      "size_m": [0.9, 0.7, 0.7],
+      "shape": "ellipsoid",
+      "semantic": "prop",
+      "position": [-2.6, 0.0, 6.0],
+      "heading_deg": 0,
+      "self_moving": true
+    },
+    {
+      "id": "sign",
+      "type": "object",
+      "instance_id": 2,
+      "layer": "foreground",
+      "label": "sign",
+      "appearance": "a triangular warning sign, a white triangle with a thick red border mounted on a short grey metal post standing on the ground",
+      "size_m": [0.9, 1.6, 0.1],
+      "shape": "box",
+      "semantic": "infrastructure",
+      "position": [2.0, 0.0, 6.0],
+      "heading_deg": 90
+    }
+  ],
+  "S": [
+    {
+      "id": "bin_path",
+      "entity": "bin",
+      "kind": "root_track",
+      "interp": "linear",
+      "keyframes": [[0.0, [-2.6, 0.0, 6.0]], [4.9, [0.6, 0.0, 6.0]]],
+      "heading": 0
+    }
+  ],
+  "R": [],
+  "D": [
+    {"from": "S.bin_path", "to": "E.sign", "why": "the bin's path ends just left of the sign without touching it"},
+    {"from": "S.bin_path", "to": "text.timeline", "why": "the timeline restates the left-to-right rolling path"},
+    {"from": "C.position", "to": "E.bin", "why": "camera distance keeps the bin at about 18% of frame height"}
+  ],
+  "text": {
+    "scene": "Fixed camera, eye-level wide shot of an empty paved grey lot in daylight. At t = 0 a cylindrical green plastic trash bin lies on its side near the left edge of the frame, its round black base facing the camera, filling about 18% of the frame height. On the right side of the frame stands a triangular warning sign, a white triangle with a red border on a short grey post, about 40% of the frame height. Both are at the same distance from the camera, side by side, with a wide gap of pavement between them.",
+    "timeline": [
+      [0.0, 2.5, "The cylindrical green bin rolls along the ground from the left edge toward the centre of the frame, moving to the right towards the triangular red-and-white sign, which stands still on the right side."],
+      [2.5, 4.2, "The cylindrical green bin keeps rolling to the right from the centre of the frame towards the triangular sign on the right side, turning steadily about its axis."],
+      [4.2, 5.17, "The cylindrical green bin finishes rolling to the right and slows to a stop just left of the triangular sign, close to it but not touching it; the sign stays standing on the right side."]
+    ],
+    "constraints": [
+      "Exactly one cylindrical bin and exactly one triangular sign.",
+      "The bin rolls on the ground from left to right toward the sign; it never lifts off, never turns around and does not hit or knock over the sign.",
+      "The sign stays still and upright on the right side of the frame.",
+      "No people, no other objects, no on-screen text."
+    ]
+  },
+  "intent": {
+    "expressiveness": "partial",
+    "expressiveness_reason": "The proxies carry the bin's left-to-right travel toward the sign and both positions; the rolling rotation and the cylindrical and triangular shapes are carried by text.",
+    "requirements": [
+      {"id": "r1", "kind": "present", "entities": ["bin", "sign"]},
+      {"id": "r2", "kind": "motion", "entity": "bin", "direction": "right", "interval": [0.0, 5.17]},
+      {"id": "r3", "kind": "relation", "a": "bin", "rel": "left_of", "b": "sign"},
+      {"id": "r4", "kind": "attribute", "entity": "bin", "phrase": "cylindrical"},
+      {"id": "r5", "kind": "attribute", "entity": "sign", "phrase": "triangular"},
+      {"id": "r6", "kind": "action", "entity": "bin", "phrase": "rolls", "interval": [0.0, 5.17]},
+      {"id": "r7", "kind": "count", "noun": "bin", "n": 1, "entities": ["bin"]},
+      {"id": "r8", "kind": "count", "noun": "sign", "n": 1, "entities": ["sign"]}
+    ]
+  },
+  "notes": "Bin rolls on its own (self_moving), axis along depth so it rolls to screen right; net travel 3.2 m of ~6.7 m visible width (~48%). Sign on the right is the goal; bin stops ~0.6 m short of it."
+}

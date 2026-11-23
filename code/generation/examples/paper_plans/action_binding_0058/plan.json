@@ -1,0 +1,150 @@
+{
+  "schema": "cb-scm-v1",
+  "scene_id": "action_binding_0058",
+  "fps": 24,
+  "frames": 124,
+  "C": {
+    "id": "camera",
+    "controller": "fixed",
+    "position": [0.2, 0.75, -0.8],
+    "target": [0.2, 0.72, 2.0],
+    "vertical_fov_deg": 35,
+    "motion": "Fixed camera."
+  },
+  "style": "photorealistic live-action footage, warm natural daylight colours",
+  "background": {
+    "appearance": "A sunny backyard patio with grey stone paving, a weathered wooden fence and a dark green hedge behind it, soft late-morning sunlight, clear sky."
+  },
+  "environment": {
+    "ground": {"semantic": "terrain", "color": [0.55, 0.53, 0.5]},
+    "sky": true,
+    "backdrop": [
+      {"id": "fence", "z": 6.0, "x_range": [-8, 8], "height": 2.2, "semantic": "building_structure", "color": [0.55, 0.42, 0.3]},
+      {"id": "hedge", "z": 7.0, "x_range": [-10, 10], "height": 3.2, "semantic": "vegetation", "color": [0.2, 0.4, 0.2]}
+    ],
+    "static_props": [],
+    "description": "A sunny backyard patio with grey stone paving, a wooden fence and a hedge behind, soft late-morning daylight, photorealistic."
+  },
+  "E": [
+    {
+      "id": "woman",
+      "type": "human",
+      "instance_id": 1,
+      "layer": "foreground",
+      "label": "woman",
+      "height_m": 1.68,
+      "appearance": "A woman in her thirties with brown hair in a ponytail, wearing a light blue blouse, beige trousers and green gardening gloves."
+    },
+    {
+      "id": "watering_can",
+      "type": "object",
+      "instance_id": 2,
+      "layer": "foreground",
+      "label": "watering can",
+      "size_m": [0.4, 0.25, 0.15],
+      "shape": "box",
+      "semantic": "prop",
+      "position": [-0.35, 1.0, 2.25],
+      "heading_deg": 90,
+      "appearance": "A green metal watering can with a long spout and a round sprinkler head."
+    },
+    {
+      "id": "pot",
+      "type": "object",
+      "instance_id": 3,
+      "layer": "foreground",
+      "label": "pot",
+      "size_m": [1.5, 0.45, 0.45],
+      "shape": "box",
+      "semantic": "prop",
+      "position": [0.55, 0.0, 1.6],
+      "heading_deg": 90,
+      "appearance": "A long rectangular terracotta plant pot with a smooth orange-brown surface, standing on the paving."
+    },
+    {
+      "id": "plants",
+      "type": "object",
+      "instance_id": 4,
+      "layer": "foreground",
+      "label": "plants",
+      "size_m": [1.3, 0.45, 0.35],
+      "shape": "ellipsoid",
+      "semantic": "vegetation",
+      "position": [0.55, 0.45, 1.6],
+      "heading_deg": 90,
+      "appearance": "Leafy green potted plants: basil, mint and small red geraniums growing in dark soil."
+    },
+    {
+      "id": "snail",
+      "type": "object",
+      "instance_id": 5,
+      "layer": "foreground",
+      "label": "snail",
+      "self_moving": true,
+      "size_m": [0.22, 0.16, 0.1],
+      "shape": "ellipsoid",
+      "semantic": "animal",
+      "position": [0.0, 0.15, 1.33],
+      "heading_deg": 90,
+      "appearance": "A large garden snail with a glossy brown spiral shell striped in amber and a pale grey-beige body with two eye stalks."
+    }
+  ],
+  "S": [
+    {
+      "id": "woman_path",
+      "entity": "woman",
+      "kind": "root_track",
+      "interp": "linear",
+      "keyframes": [[0.0, [-0.75, 2.4]], [5.17, [-0.75, 2.4]]],
+      "heading": 90
+    },
+    {
+      "id": "snail_path",
+      "entity": "snail",
+      "kind": "root_track",
+      "interp": "linear",
+      "keyframes": [[0.0, [0.0, 0.15, 1.33]], [5.17, [0.95, 0.15, 1.33]]],
+      "heading": 90
+    }
+  ],
+  "R": [
+    {"id": "hold_can", "type": "hold", "object": "watering_can", "holder": "woman", "start": 0.0, "end": 5.17, "mode": "carry"}
+  ],
+  "D": [
+    {"from": "E.snail", "to": "E.pot", "why": "the snail crawls on the front face of the pot, so its depth must stay at the pot's front surface"},
+    {"from": "E.plants", "to": "E.pot", "why": "the plants sit on top of the pot"},
+    {"from": "E.watering_can", "to": "E.woman", "why": "the woman holds the watering can in her right hand"},
+    {"from": "S.snail_path", "to": "C.position", "why": "the snail must stay inside the frame and large enough"}
+  ],
+  "text": {
+    "scene": "Fixed eye-level shot of a sunny backyard patio. On the left third of the frame stands a woman with a brown ponytail in a light blue blouse, beige trousers and green gloves, filling about 80% of the frame height, shown in profile facing screen right toward the plants, holding a green metal watering can in her right hand in front of her chest. In the centre-right lower part of the frame, closer to the camera than the woman, stands a long rectangular terracotta pot with leafy green plants (basil, mint, red geraniums) growing on top of it. On the front face of the pot, in the foreground nearest the camera, a large garden snail with a glossy brown striped spiral shell clings near the left end of the pot, at the lower centre of the frame, about 12% of the frame height, facing screen right.",
+    "timeline": [
+      [0.0, 1.7, "The woman in the light blue blouse tilts the green watering can and waters the plants in the terracotta pot, a stream of water falling onto the leaves; the brown-shelled snail crawls along the front of the pot from its left end toward the right, sliding slowly to the right."],
+      [1.7, 3.4, "The woman in the light blue blouse keeps watering the plants, moving the spout gently over the basil and geraniums while water drips from the leaves; the brown-shelled snail keeps crawling along the front of the pot, now in the middle of the pot, moving from the left side to the right side of the frame."],
+      [3.4, 5.17, "The woman in the light blue blouse continues to water the plants with the green watering can; the brown-shelled snail keeps crawling along the pot until it reaches the right part of the pot's front face near the right side of the frame."]
+    ],
+    "constraints": [
+      "exactly one woman, one watering can, one pot of plants and one snail",
+      "the woman stays on the left and keeps watering the plants for the whole shot",
+      "the snail stays on the front face of the pot the whole time and crawls from left to right",
+      "no other people or animals, no on-screen text, fixed camera"
+    ]
+  },
+  "intent": {
+    "expressiveness": "partial",
+    "expressiveness_reason": "Positions, the held watering can and the snail's crawl along the pot are in the proxies; the pouring water and the woman's watering gesture are text only.",
+    "requirements": [
+      {"id": "r1", "kind": "present", "entities": ["woman", "pot", "plants", "snail", "watering_can"]},
+      {"id": "r2", "kind": "count", "noun": "woman", "n": 1, "entities": ["woman"]},
+      {"id": "r3", "kind": "count", "noun": "snail", "n": 1, "entities": ["snail"]},
+      {"id": "r4", "kind": "action", "entity": "woman", "phrase": "waters the plants"},
+      {"id": "r5", "kind": "action", "entity": "snail", "phrase": "crawls along the pot"},
+      {"id": "r6", "kind": "motion", "entity": "snail", "direction": "right"},
+      {"id": "r7", "kind": "contact", "a": "snail", "b": "pot"},
+      {"id": "r8", "kind": "relation", "a": "plants", "rel": "on_top_of", "b": "pot"},
+      {"id": "r9", "kind": "relation", "a": "woman", "rel": "left_of", "b": "pot"},
+      {"id": "r10", "kind": "contact", "a": "watering_can", "b": "woman"}
+    ]
+  },
+  "notes": "Snail is a large garden snail placed close to the camera on the front face of a long planter so that it is visible; the woman stands behind-left of the planter holding the watering can for the whole shot."
+}

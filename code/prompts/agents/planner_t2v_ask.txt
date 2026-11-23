@@ -1,0 +1,1 @@
+Your complete instructions are in the file task.md in the current directory. Read that file first and carry it out exactly as written. Your final answer is the structured summary the task file asks for.

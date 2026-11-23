@@ -1,0 +1,1 @@
+- Image {K} is the reference picture of '{E}' in the edited video: make it look like that.

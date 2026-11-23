@@ -1,0 +1,6 @@
+
+
+detailed_description:
+{BODY}{EXTRA}
+Match the depth, placement, scale and motion of Video 1.
+

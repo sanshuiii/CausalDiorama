@@ -1,0 +1,6 @@
+These are 6 frames sampled in time order from one video clip. Write a description of the video in the style of the examples below: one paragraph of about 40 words describing the main subjects, the setting, what moves or happens over time, and the camera. Describe only what is visible. Output the paragraph only.
+
+Examples:
+- A black decorative wax warmer with an intricate vine-like cutout pattern sits on a white tabletop, glowing from a light source inside. A single yellow wax cube is placed on the top tray. To the right, a white ceramic vase holds branches of yellow forsythia flowers. In the background, a white-framed window lets in soft, natural light, creating a cozy domestic atmosphere.
+- A person wearing a dark jacket and a backpack is seen from behind, walking away from the camera along a narrow paved path. The path cuts through a winter forest with frost-covered grass and bare trees. The bright morning sun is low in the sky on the left, casting a strong backlight through the branches and creating long shadows on the ground.
+- A sleek silver espresso machine is centered in the frame, dispensing two streams of dark espresso into a clear, double-walled glass. The background is a dark, charcoal-colored textured wall, and the lighting is soft and focused on the machine's metallic surface. The camera is static in a medium close-up shot.

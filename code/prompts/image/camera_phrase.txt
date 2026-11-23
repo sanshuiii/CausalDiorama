@@ -1,0 +1,1 @@
+Seen from {WHERE} camera{LOOK}; the view is about {WIDTH} m wide at the centre of the scene.

@@ -1,0 +1,1 @@
+- {PATH}: the box of "{NAME}" cropped on each frame (grey tile = not detected)

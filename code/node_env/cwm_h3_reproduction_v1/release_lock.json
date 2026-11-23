@@ -1,0 +1,47 @@
+{
+  "created_date": "2026-09-15",
+  "status": "single_window_inference_passed",
+  "cwm_commit": "17fa82ba2fb8168aa0d30fc51a1d1d0ebbc9180b",
+  "musubi_commit": "c4dc6b8038c114f730f1aa24a98064de3bd62437",
+  "flash_attention_commit": "c68c592fd9da1e40a4fb0b56229caae6754ac5c9",
+  "base_repository": "Comfy-Org/MiniMax-H3",
+  "base_revision": "0543966fbdce5ba05709a8f2031c94bdba629b4a",
+  "base_files": [
+    "diffusion_models/minimax_h3_ref2va_bf16.safetensors",
+    "text_encoders/qwen3vl_32b_minimax_h3_bf16.safetensors",
+    "vae/minimax_h3_video_vae_fp16.safetensors",
+    "vae/minimax_h3_audio_vae_fp32.safetensors"
+  ],
+  "processor_repository": "Qwen/Qwen3-VL-32B-Instruct",
+  "processor_revision": "0cfaf48183f594c314753d30a4c4974bc75f3ccb",
+  "lora_repository": "NTU-yiwen/awm-minimax-h3-new1344-lora-checkpoints",
+  "lora_revision": "a3df90f6742748896457cec84b13dbedbce56fff",
+  "lora_filename": "minimax-h3-new1344-q4-system-chat-fresh-official-3ep-warmup100-cosine2e5to1e6-fa3-v1.safetensors",
+  "lora_sha256": "0e14ad22ae203f684ba6521e0b6fbf58f64668ed454fbce346acafd7f448fdb2",
+  "dataset_repository": "NTU-yiwen/code-world-model-inference-examples-40",
+  "dataset_revision": "f8307bf50cb19bed191682734fdf444738160f91",
+  "settings": {
+    "width": 1344,
+    "height": 768,
+    "fps": 24,
+    "frames_per_window": 124,
+    "window_stride": 90,
+    "steps": 20,
+    "attention_mode": "flash3",
+    "blocks_to_swap": 48,
+    "expected_lora_modules": 200,
+    "seed_policy": "preserve the selected released example seed"
+  },
+  "runtime_verified_on": "NVIDIA H20 SM90",
+  "actual_build_toolkit": "CUDA 12.8.1",
+  "fa3_build_scope": "BF16 head_dim128 forward only",
+  "example_id": 1,
+  "seed": 9942001,
+  "result": {
+    "video": "artifacts/output.mp4",
+    "validation": "artifacts/validation.json",
+    "elapsed_seconds": 1624.489,
+    "peak_gpu_memory_gib": 52.3212890625,
+    "training_verified": false
+  }
+}

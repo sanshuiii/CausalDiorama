@@ -1,0 +1,1 @@
+ -- a red outline box in Image 1 marks where it goes; the box outline itself must disappear.

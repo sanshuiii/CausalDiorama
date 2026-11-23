@@ -1,0 +1,1 @@
+<Picture 1> is the initial full-scene frame. Each other picture shows only its assigned subject; it fixes appearance, not position, size, pose or camera. <Video 1> supplies geometry, positions, scale, motion, occlusion and camera.

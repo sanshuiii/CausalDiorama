@@ -1,0 +1,1 @@
+Camera movement: {MOTION} One continuous shot, no cuts. The first frame matches Picture 1; preserve its scene appearance and lighting.

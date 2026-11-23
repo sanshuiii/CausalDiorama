@@ -1,0 +1,100 @@
+{
+ "version": "pv2",
+ "note": "rules_e2 plus require_v2b (camera node C, dependency edges, each thing once, motions with a cause, edit declarations).",
+ "lint": {
+  "min_visible": 0.9,
+  "min_height": 0.1,
+  "count_min_height": 0.08,
+  "inside_frame": 0.8,
+  "max_occlusion": 0.25,
+  "max_occlusion_contact": 0.6,
+  "relation_margin": 0.05,
+  "relation_frac": 0.9,
+  "depth_margin": 1,
+  "motion_min": 0.35,
+  "require_v2": true,
+  "require_v2b": true
+ },
+ "ranges": {
+  "min_visible": [
+   0.8,
+   0.98
+  ],
+  "min_height": [
+   0.05,
+   0.15
+  ],
+  "count_min_height": [
+   0.03,
+   0.1
+  ],
+  "inside_frame": [
+   0.6,
+   0.95
+  ],
+  "max_occlusion": [
+   0.1,
+   0.4
+  ],
+  "max_occlusion_contact": [
+   0.4,
+   0.8
+  ],
+  "relation_margin": [
+   0.03,
+   0.1
+  ],
+  "relation_frac": [
+   0.8,
+   0.98
+  ],
+  "depth_margin": [
+   0.3,
+   1.5
+  ],
+  "motion_min": [
+   0.1,
+   0.4
+  ]
+ },
+ "planner_rules": [
+  "First-frame agreement: the opening frame is generated from text alone, so text.scene must describe t = 0 exactly as the proxies show it: each named subject's screen position, rough share of frame height, facing in screen terms, and which is nearer the camera. Choose the most ordinary composition that fits the description.",
+  "Subjects too small: keep every named subject, including secondary ones, at least about 15% of frame height for the whole shot, bringing the camera closer rather than shrinking the scene. Keep acting subjects at similar, moderate camera distances; never push one into the far background as a small element.",
+  "Action finishing early: the described movement or action must fill most of the shot. Start it by 0.5 s, keep it going until at least 4.5 s, and let any arrival, landing or settling occupy only the final second. Add no wind-up, pause or aftermath beats the description does not ask for.",
+  "Under-executed motion: plan a net displacement of 40-60% of the frame along the described screen axis, starting near one edge and ending near the opposite side, with linear interpolation. In text.scene and every timeline interval, restate the direction with start and end screen regions (e.g. 'from the left edge to the right side').",
+  "Direction diluted by drift: move a subject along one axis only. Left/right paths keep constant camera distance; up/down paths keep constant horizontal position and depth; toward/away paths stay centred. Never add sideways drift, turning or bobbing the description does not ask for.",
+  "Depth relations read as side by side: for in front of / behind, overlap the two on screen, the nearer one at about half the farther one's camera distance, lower and larger, covering only a minor part of it. Hold the relation all shot; a moving subject never crosses to the reference's other side.",
+  "Depth relations lost in text: in text.scene and every timeline interval, state in front of / behind with visual cues, such as 'in the foreground, closer to the camera, partly blocking the one behind' or 'farther away, partly hidden behind it', not the relation word alone.",
+  "Counted instances merging or dropping: prefer one straight row at equal depth, evenly spaced with gaps of at least half a body width, all well inside the frame; never use clusters or tightly staggered rows. For many instances pull the camera back, but keep each one clearly countable.",
+  "Count wording: text.scene states the exact number, then lists each instance left to right with a distinct colour or marking. Every timeline interval repeats the exact number and states that none leave, merge or are hidden.",
+  "Counted instances in motion: move them all in parallel with identical direction, speed and distance so gaps never shrink; paths never cross or converge. Avoid motion toward or away from the camera unless described, and keep every instance inside the frame throughout.",
+  "Action binding: with two or more subjects doing different actions, give each its own screen region at similar size, and in every timeline interval write one clause per subject: its appearance plus the described verb. Never let one subject pause or merely watch unless described; a travelling action must move its proxy.",
+  "Multi-phase events: give each phase (such as a launch, a turn and a return) its own timeline interval of at least 1 s and a distinct proxy segment, naming any rotation in the interval where it happens. Keep an airborne object clearly visible and separated from its holder at the peak."
+ ],
+ "rationale": [
+  "Rule 1 (first-frame agreement): supported by all three: P1 rule 9, P2 rule 1, P3 rule 1.",
+  "Rule 2 (minimum subject size, no far-background subject): supported by all three: P1 rule 3, P2 rule 2, P3 rule 1 (never a small far-background element).",
+  "Rule 3 (action fills the shot, arrival only at the end, no filler beats): supported by all three: P1 rule 2 (arrival only in final second), P2 rule 5 (reach end no earlier than about 4.2 s), P3 rule 11 (no wind-up/settling filler).",
+  "Rule 4 (large displacement plus start/end direction wording): P1 rules 1-2 and P2 rules 3 and 6.",
+  "Rule 5 (single-axis motion, constant camera distance): P1 rule 1 (constant camera distance unless toward/away) and P2 rule 4.",
+  "Rule 6 (depth-relation geometry held under motion): P1 rule 4 and P2 rules 10-11.",
+  "Rule 7 (depth-relation visual cues in text): P1 rule 5 and P2 rule 10 (closer to the camera / farther away, partly hidden).",
+  "Rule 8 (count layout, spacing, inside frame): P1 rule 6 and P2 rule 7. Kept to their common ground: a single row preferred, no clusters or tight staggering.",
+  "Rule 9 (count wording, exact number, distinct markings, repeated every interval): P1 rules 6-7 and P2 rule 8.",
+  "Rule 10 (counted instances moving in parallel): P1 rule 7 and P2 rule 9.",
+  "Rule 11 (action binding, one clause per subject, own region): P1 rule 8 and P3 rule 9.",
+  "Rule 12 (multi-phase events, rotation named at its interval, airborne object separated from holder): P1 rule 10 and P3 rules 5-6.",
+  "Dropped because only one proposal had them or they conflicted: effects/proxy-less details in text (P2 rule 12 and P3 rule 8 only partly overlap; cut to stay within 12 rules), static opening pose (P3 rule 2, which conflicts with P2 rule 6), speed matched to the verb (P3 rule 3), gait bursts (P3 rule 4), contact (P3 rule 7), shape attributes (P3 rule 10).",
+  "min_visible: 0.9, 0.9, 0.9 -> median 0.9",
+  "min_height: 0.12, 0.10, 0.08 -> median 0.10",
+  "count_min_height: 0.08, 0.08, 0.05 -> median 0.08",
+  "inside_frame: 0.8, 0.8, 0.8 -> median 0.8",
+  "max_occlusion: 0.25, 0.25, 0.25 -> median 0.25",
+  "max_occlusion_contact: 0.6, 0.6, 0.6 -> median 0.6",
+  "relation_margin: 0.05, 0.05, 0.05 -> median 0.05",
+  "relation_frac: 0.9, 0.9, 0.9 -> median 0.9",
+  "depth_margin: 1.0, 1.0, 0.5 -> median 1.0",
+  "motion_min: 0.35, 0.35, 0.2 -> median 0.35",
+  "Word counts per rule were checked: all 12 rules have 55 words or fewer."
+ ]
+}

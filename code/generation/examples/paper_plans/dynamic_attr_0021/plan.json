@@ -1,0 +1,77 @@
+{
+  "schema": "cb-scm-v1",
+  "scene_id": "dynamic_attr_0021",
+  "fps": 24,
+  "frames": 124,
+  "C": {
+    "id": "camera",
+    "controller": "fixed",
+    "position": [0.0, 0.95, 0.2],
+    "target": [0.0, 0.92, 1.7],
+    "vertical_fov_deg": 35,
+    "motion": "Fixed camera."
+  },
+  "style": "photorealistic live-action footage, soft natural indoor daylight colours",
+  "background": {
+    "appearance": "A quiet, bright room seen at table height: a plain light wooden table top in the foreground and a smooth off-white painted wall behind it, lit by soft daylight from a window off to the left, no people and nothing else on the table."
+  },
+  "environment": {
+    "ground": {"semantic": "building_structure", "color": [0.55, 0.45, 0.35]},
+    "sky": false,
+    "backdrop": [
+      {"id": "wall_back", "z": 4.0, "x_range": [-6, 6], "height": 3.5, "semantic": "building_structure", "color": [0.92, 0.9, 0.86]}
+    ],
+    "static_props": [
+      {"id": "table", "center": [0.0, 0.375, 1.7], "radii": [1.0, 0.375, 0.6], "semantic": "prop", "color": [0.72, 0.56, 0.38]}
+    ],
+    "description": "An indoor room with a light wooden table in front of a smooth off-white wall, soft daylight from the left, calm and uncluttered."
+  },
+  "E": [
+    {
+      "id": "balloon",
+      "type": "object",
+      "instance_id": 1,
+      "layer": "foreground",
+      "label": "balloon",
+      "appearance": "a glossy red latex party balloon with a small open neck at its bottom, its rubber skin stretching and turning smoother and more translucent as it inflates",
+      "size_m": [0.3, 0.36, 0.3],
+      "shape": "ellipsoid",
+      "semantic": "prop",
+      "position": [0.0, 0.75, 1.7],
+      "heading_deg": 90
+    }
+  ],
+  "S": [],
+  "R": [],
+  "D": [
+    {"from": "E.balloon", "to": "C.target", "why": "camera is aimed at the balloon on the table so it stays centred and large"},
+    {"from": "environment.static_props", "to": "E.balloon", "why": "balloon rests on the table top at y = 0.75"},
+    {"from": "E.balloon", "to": "text.timeline", "why": "the expansion is carried by the text while the proxy keeps its position"}
+  ],
+  "text": {
+    "scene": "Fixed camera at table height, looking straight at a single red latex balloon standing upright in the centre of the frame on a light wooden table in front of an off-white wall. At t = 0 the balloon is small and only partly inflated, slightly wrinkled, its open neck at the bottom resting on the table, taking up roughly a quarter of the frame height and centred on screen; nothing else is on the table.",
+    "timeline": [
+      [0.0, 1.7, "The single red balloon in the centre of the frame starts expanding as it is filled with air through its neck: it swells steadily, its wrinkles smoothing out, while it stays centred on the table."],
+      [1.7, 3.4, "The red balloon keeps expanding as it is filled with air, growing rounder and larger, its glossy rubber skin stretching tighter and becoming slightly more translucent, still centred on the table."],
+      [3.4, 5.17, "The red balloon continues expanding as it is filled with air until it is a big, round, taut balloon filling a large part of the frame height, still centred and resting on the table."]
+    ],
+    "constraints": [
+      "exactly one balloon",
+      "the balloon expands continuously from small to large over the whole shot",
+      "the balloon does not pop, fly away or leave the frame",
+      "no people, hands or other objects appear",
+      "no on-screen text",
+      "fixed camera"
+    ]
+  },
+  "intent": {
+    "expressiveness": "partial",
+    "expressiveness_reason": "The proxy fixes the balloon's position and framing, but its growth in size while being filled with air is carried only by the text.",
+    "requirements": [
+      {"id": "r1", "kind": "present", "entities": ["balloon"]},
+      {"id": "r2", "kind": "count", "noun": "balloon", "n": 1, "entities": ["balloon"]},
+      {"id": "r3", "kind": "action", "entity": "balloon", "phrase": "expanding as it is filled with air", "interval": [0.0, 5.17]}
+    ]
+  },
+  "notes": "The executor cannot scale a proxy over time, so the balloon proxy is a fixed, mid-sized ellipsoid on the table; the inflation is stated in every timeline interval. No inflating person or pump is added since the description names none."
+}

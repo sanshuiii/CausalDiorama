@@ -1,0 +1,1 @@
+Image 1 is a picture of {APP}. Make the same picture, with the same view, pose, framing, plain background and light, changed only as follows: {CHANGES}. Keep the identity, shape and every unchanged detail of image 1. No text.

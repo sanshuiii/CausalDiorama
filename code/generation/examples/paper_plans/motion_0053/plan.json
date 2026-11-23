@@ -1,0 +1,101 @@
+{
+  "schema": "cb-scm-v1",
+  "scene_id": "motion_0053",
+  "fps": 24,
+  "frames": 124,
+  "C": {
+    "id": "camera",
+    "controller": "fixed",
+    "position": [0.0, 1.8, 0.0],
+    "target": [0.0, 2.3, 9.0],
+    "vertical_fov_deg": 35,
+    "motion": "Fixed camera."
+  },
+  "style": "photorealistic live-action footage, natural daylight colours",
+  "background": {
+    "appearance": "An empty paved city square on a clear day: light grey stone paving in the foreground, a row of beige and cream multi-storey buildings with windows along the far side of the square, and a pale blue sky above, soft midday sunlight."
+  },
+  "environment": {
+    "ground": {"semantic": "road_paved", "color": [0.7, 0.7, 0.68]},
+    "sky": true,
+    "backdrop": [
+      {"id": "buildings_far", "z": 26.0, "x_range": [-30, 30], "height": 12.0, "semantic": "building_structure", "color": [0.85, 0.8, 0.7]}
+    ],
+    "static_props": [],
+    "description": "A wide paved city square with stone paving, a row of buildings on its far side, clear blue sky and soft midday sunlight."
+  },
+  "E": [
+    {
+      "id": "statue",
+      "type": "object",
+      "instance_id": 1,
+      "layer": "foreground",
+      "label": "statue",
+      "appearance": "a grey stone statue of a standing robed figure on a square stone pedestal",
+      "size_m": [0.9, 2.6, 0.9],
+      "shape": "box",
+      "semantic": "building_structure",
+      "position": [0.0, 0.0, 9.0],
+      "heading_deg": 90
+    },
+    {
+      "id": "balloon",
+      "type": "object",
+      "instance_id": 2,
+      "layer": "foreground",
+      "label": "balloon",
+      "appearance": "a large round shiny red balloon with a thin white string hanging below it",
+      "size_m": [1.0, 1.0, 1.0],
+      "shape": "ellipsoid",
+      "semantic": "prop",
+      "position": [3.0, 3.3, 9.0],
+      "heading_deg": 90,
+      "self_moving": true
+    }
+  ],
+  "S": [
+    {
+      "id": "balloon_path",
+      "entity": "balloon",
+      "kind": "root_track",
+      "interp": "linear",
+      "keyframes": [[0.0, [3.0, 3.3, 9.0]], [5.17, [-3.0, 3.3, 9.0]]],
+      "heading": -90
+    }
+  ],
+  "R": [],
+  "D": [
+    {"from": "E.balloon", "to": "S.balloon_path", "why": "the balloon track starts at the balloon's initial position and keeps its height and depth"},
+    {"from": "E.statue", "to": "S.balloon_path", "why": "the balloon path height stays above the statue top (2.6 m) so it remains above the statue on screen"},
+    {"from": "C.target", "to": "E.balloon", "why": "camera framing keeps both the statue and the balloon high above it inside the frame"},
+    {"from": "S.balloon_path", "to": "text.timeline", "why": "timeline restates the right-to-left drift with start and end screen regions"}
+  ],
+  "text": {
+    "scene": "A fixed, eye-level wide shot of a paved city square in daylight, with buildings along the far side. At t = 0 a grey stone statue of a standing robed figure on a square stone pedestal stands at the centre of the frame, filling about 45% of the frame height, facing the camera. A large round shiny red balloon with a thin white string floats high above the statue, near the right side of the frame (about three quarters of the way across), in the upper part of the frame, about 18% of the frame height, at the same distance from the camera as the statue and clearly above its head.",
+    "timeline": [
+      [0.0, 2.0, "The large red balloon drifts slowly from the right side of the frame toward the centre, staying high above the grey stone statue, which stands still at the centre of the square."],
+      [2.0, 3.5, "The large red balloon keeps drifting right to left, passing directly above the grey stone statue at the centre of the frame, never touching it."],
+      [3.5, 5.17, "The large red balloon continues drifting right to left, from the centre toward the left side of the frame, still high above the level of the grey stone statue, which stays still at the centre."]
+    ],
+    "constraints": [
+      "exactly one balloon and exactly one statue",
+      "the balloon stays above the statue on screen the whole time and never touches it",
+      "the balloon moves only from right to left at a steady height, without rising, falling or bobbing",
+      "no people, no other objects, no on-screen text",
+      "the camera does not move"
+    ]
+  },
+  "intent": {
+    "expressiveness": "full",
+    "expressiveness_reason": "The balloon's right-to-left drift above the statue and the statue's position are fully represented by the proxies.",
+    "requirements": [
+      {"id": "r1", "kind": "present", "entities": ["balloon", "statue"]},
+      {"id": "r2", "kind": "relation", "a": "balloon", "rel": "above", "b": "statue"},
+      {"id": "r3", "kind": "motion", "entity": "balloon", "direction": "left"},
+      {"id": "r4", "kind": "action", "entity": "balloon", "phrase": "drifts right to left"},
+      {"id": "r5", "kind": "count", "noun": "balloon", "n": 1, "entities": ["balloon"]},
+      {"id": "r6", "kind": "count", "noun": "statue", "n": 1, "entities": ["statue"]}
+    ]
+  },
+  "notes": "Camera 9 m from the statue: visible height ~5.7 m, width ~10 m. Statue 2.6 m (~46% height). Balloon 1.0 m (~18%) at 3.3-4.3 m height, same depth, moving linearly x +3 -> -3 (~59% of frame width)."
+}

@@ -1,0 +1,6 @@
+# Planning machine (plan.py, prepare.py, run.py and the checker the agent runs). Versions used for the release checks.
+anthropic==2.9.0    # --agent api only
+numpy==2.4.6
+pillow==12.3.0
+# --agent claude-code needs the Claude Code CLI (`claude`, 2.1.327 in the release checks) instead of the anthropic package.
+# The GPU nodes use the environments of code/shared/tools (H3 Ref2VA + CWM LoRA, Qwen-Image-2.1); see code/shared/tools.

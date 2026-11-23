@@ -1,0 +1,117 @@
+{
+  "schema": "cb-scm-v1",
+  "scene_id": "numeracy_0107",
+  "fps": 24,
+  "frames": 124,
+  "C": {
+    "id": "camera",
+    "controller": "fixed",
+    "position": [0.0, 4.0, 1.5],
+    "target": [0.0, 0.7, 6.5],
+    "vertical_fov_deg": 35,
+    "motion": "Fixed camera."
+  },
+  "style": "photorealistic live-action footage, warm natural indoor colours",
+  "background": {
+    "appearance": "An empty cosy dining room with a light wooden plank floor, warm beige painted walls, a window with sheer curtains on the back wall and soft warm evening light from a ceiling lamp."
+  },
+  "environment": {
+    "ground": {"semantic": "building_structure", "color": [0.62, 0.48, 0.34]},
+    "sky": false,
+    "backdrop": [
+      {"id": "back_wall", "z": 9.5, "x_range": [-10, 10], "height": 4.0, "semantic": "building_structure", "color": [0.85, 0.78, 0.66]}
+    ],
+    "static_props": [],
+    "description": "An indoor dining room with a wooden floor and beige walls, lit by warm evening lamplight; photorealistic."
+  },
+  "E": [
+    {
+      "id": "table", "type": "object", "instance_id": 1, "layer": "foreground",
+      "label": "table",
+      "appearance": "a rectangular wooden dining table with a light oak top and four legs",
+      "size_m": [2.0, 0.75, 0.9], "shape": "box", "semantic": "prop",
+      "position": [0.0, 0.0, 6.0], "heading_deg": 90
+    },
+    {
+      "id": "meal", "type": "object", "instance_id": 2, "layer": "foreground",
+      "label": "meal",
+      "appearance": "a shared meal of food: white plates of pasta and salad, a bowl of bread and glasses of water spread across the table",
+      "size_m": [1.5, 0.15, 0.65], "shape": "box", "semantic": "prop",
+      "position": [0.0, 0.75, 6.0], "heading_deg": 90
+    },
+    {
+      "id": "person_left", "type": "human", "instance_id": 3, "layer": "foreground",
+      "label": "person",
+      "appearance": "a woman with long brown hair wearing a red sweater, seated on a chair",
+      "height_m": 1.3
+    },
+    {
+      "id": "person_back_left", "type": "human", "instance_id": 4, "layer": "foreground",
+      "label": "person",
+      "appearance": "a man with short black hair wearing a blue shirt, seated on a chair",
+      "height_m": 1.3
+    },
+    {
+      "id": "person_back_right", "type": "human", "instance_id": 5, "layer": "foreground",
+      "label": "person",
+      "appearance": "a woman with blonde hair wearing a yellow blouse, seated on a chair",
+      "height_m": 1.3
+    },
+    {
+      "id": "person_right", "type": "human", "instance_id": 6, "layer": "foreground",
+      "label": "person",
+      "appearance": "a grey-haired man wearing a green jacket, seated on a chair",
+      "height_m": 1.3
+    }
+  ],
+  "S": [
+    {"id": "person_left_pos", "entity": "person_left", "kind": "root_track", "interp": "linear", "keyframes": [[0.0, [-1.45, 6.0]], [5.17, [-1.45, 6.0]]], "heading": 90},
+    {"id": "person_back_left_pos", "entity": "person_back_left", "kind": "root_track", "interp": "linear", "keyframes": [[0.0, [-0.6, 7.3]], [5.17, [-0.6, 7.3]]], "heading": 180},
+    {"id": "person_back_right_pos", "entity": "person_back_right", "kind": "root_track", "interp": "linear", "keyframes": [[0.0, [0.6, 7.3]], [5.17, [0.6, 7.3]]], "heading": 180},
+    {"id": "person_right_pos", "entity": "person_right", "kind": "root_track", "interp": "linear", "keyframes": [[0.0, [1.45, 6.0]], [5.17, [1.45, 6.0]]], "heading": -90}
+  ],
+  "R": [],
+  "D": [
+    {"from": "E.table", "to": "E.meal", "why": "the meal rests on the table top at its height"},
+    {"from": "E.table", "to": "S.person_*", "why": "the four people sit around the table, just beyond its edges"},
+    {"from": "S.person_*", "to": "C.position", "why": "the high camera angle keeps the two people behind the table visible above its top"},
+    {"from": "E.person_*", "to": "text.scene", "why": "text.scene lists the four people and their screen positions"}
+  ],
+  "text": {
+    "scene": "A slightly high, fixed view of a cosy dining room. In the centre of the frame stands a rectangular light oak dining table covered with a shared meal: white plates of pasta and salad, a bowl of bread and glasses of water. Exactly four people sit around the table, each about a third of the frame height, all clearly separated. From left to right: at the left end of the table, on the left side of the frame, a woman with long brown hair in a red sweater sits facing right toward the table; behind the table on its far side, left of centre and a little farther from the camera, a man with short black hair in a blue shirt sits facing the camera, his lower body hidden behind the table top; behind the table on its far side, right of centre and a little farther from the camera, a blonde woman in a yellow blouse sits facing the camera, her lower body hidden behind the table top; at the right end of the table, on the right side of the frame, a grey-haired man in a green jacket sits facing left toward the table. The near side of the table, closest to the camera, is empty.",
+    "timeline": [
+      [0.0, 1.7, "Exactly four people stay seated around the table; none leave, merge or are hidden. The woman in the red sweater at the left end chats and laughs while eating pasta; the man in the blue shirt behind the table on the left talks and gestures with his fork; the blonde woman in the yellow blouse behind the table on the right listens, nods and eats salad; the grey-haired man in the green jacket at the right end chats and passes the bread bowl along the table as they share their meal."],
+      [1.7, 3.4, "Exactly four people stay seated around the table; none leave, merge or are hidden. The woman in the red sweater at the left end talks and gestures toward the others; the man in the blue shirt behind the table on the left laughs and eats a bite of pasta; the blonde woman in the yellow blouse behind the table on the right chats and reaches for bread from the shared meal; the grey-haired man in the green jacket at the right end chats and sips water."],
+      [3.4, 5.17, "Exactly four people stay seated around the table; none leave, merge or are hidden. The woman in the red sweater at the left end chats and eats salad; the man in the blue shirt behind the table on the left chats and serves himself more food from the shared plates; the blonde woman in the yellow blouse behind the table on the right laughs and talks; the grey-haired man in the green jacket at the right end chats and eats pasta as all four keep sharing their meal."]
+    ],
+    "constraints": [
+      "Exactly four people, no more and no fewer, all visible for the whole shot.",
+      "All four stay seated around the one table; nobody stands up, leaves or enters.",
+      "One table with a shared meal of food on it.",
+      "Fixed camera, no camera movement; no on-screen text."
+    ]
+  },
+  "intent": {
+    "expressiveness": "partial",
+    "expressiveness_reason": "The proxies fix the four people around the table and the meal on it; sitting, chatting and eating are carried only by text.",
+    "requirements": [
+      {"id": "r1", "kind": "present", "entities": ["table", "person_left", "person_back_left", "person_back_right", "person_right"]},
+      {"id": "r2", "kind": "count", "noun": "person", "n": 4, "entities": ["person_left", "person_back_left", "person_back_right", "person_right"]},
+      {"id": "r3", "kind": "present", "entities": ["meal"]},
+      {"id": "r4", "kind": "relation", "a": "meal", "rel": "on_top_of", "b": "table"},
+      {"id": "r5", "kind": "relation", "a": "person_left", "rel": "left_of", "b": "table"},
+      {"id": "r6", "kind": "relation", "a": "person_right", "rel": "right_of", "b": "table"},
+      {"id": "r7", "kind": "relation", "a": "person_back_left", "rel": "behind", "b": "table"},
+      {"id": "r8", "kind": "relation", "a": "person_back_right", "rel": "behind", "b": "table"},
+      {"id": "r9", "kind": "action", "entity": "person_left", "phrase": "chats"},
+      {"id": "r10", "kind": "action", "entity": "person_back_left", "phrase": "chats"},
+      {"id": "r11", "kind": "action", "entity": "person_back_right", "phrase": "chats"},
+      {"id": "r12", "kind": "action", "entity": "person_right", "phrase": "chats"},
+      {"id": "r13", "kind": "action", "entity": "person_left", "phrase": "seated around the table"},
+      {"id": "r14", "kind": "action", "entity": "person_right", "phrase": "share their meal"},
+      {"id": "r15", "kind": "attribute", "entity": "meal", "phrase": "food"},
+      {"id": "r16", "kind": "contact", "a": "meal", "b": "table"}
+    ]
+  },
+  "notes": "Seated people are approximated by 1.3 m human proxies (seated head height). Classic dining composition: two people at the table ends, two on the far side, near side open to the camera. High camera (4 m) keeps the far-side people mostly above the table top so they are at most ~15% hidden."
+}

@@ -1,0 +1,122 @@
+{
+  "schema": "cb-scm-v1",
+  "scene_id": "dynamic_attr_0003",
+  "fps": 24,
+  "frames": 124,
+  "C": {
+    "id": "camera",
+    "controller": "fixed",
+    "position": [0.0, 0.165, -0.4],
+    "target": [0.0, 0.165, 0.0],
+    "vertical_fov_deg": 35,
+    "motion": "Fixed camera, macro close-up of the cocoon hanging from a twig."
+  },
+  "style": "photorealistic macro time-lapse nature footage, soft natural daylight, shallow depth of field, rich greens and warm browns",
+  "background": {
+    "appearance": "A thin brown woody twig running horizontally across the upper part of the frame in a quiet garden, against a softly blurred background of green leaves, soft even daylight, shallow depth of field."
+  },
+  "environment": {
+    "ground": {"semantic": "terrain", "color": [0.35, 0.3, 0.2]},
+    "sky": false,
+    "backdrop": [
+      {"id": "foliage", "z": 0.6, "x_range": [-1.0, 1.0], "height": 1.0, "semantic": "vegetation", "color": [0.25, 0.45, 0.2]}
+    ],
+    "static_props": [
+      {"id": "twig", "center": [0.0, 0.206, 0.0], "radii": [0.3, 0.006, 0.006], "semantic": "vegetation", "color": [0.4, 0.28, 0.16]}
+    ],
+    "description": "Macro view of a thin brown twig in a garden, blurred green leaves behind, soft daylight, time-lapse look."
+  },
+  "E": [
+    {
+      "id": "cocoon",
+      "type": "object",
+      "instance_id": 1,
+      "layer": "foreground",
+      "label": "cocoon",
+      "appearance": "a smooth, pale green, semi-translucent teardrop-shaped cocoon with tiny gold dots, hanging from the twig by a silk pad at its top",
+      "size_m": [0.03, 0.065, 0.03],
+      "shape": "ellipsoid",
+      "semantic": "prop",
+      "position": [0.0, 0.135, 0.0]
+    },
+    {
+      "id": "caterpillar",
+      "type": "object",
+      "instance_id": 2,
+      "layer": "foreground",
+      "label": "caterpillar",
+      "appearance": "a plump caterpillar with black, white and yellow stripes, curled head-down, seen as a soft shape through the thin translucent wall of the cocoon",
+      "size_m": [0.018, 0.05, 0.01],
+      "shape": "ellipsoid",
+      "semantic": "animal",
+      "position": [0.0, 0.142, -0.012]
+    },
+    {
+      "id": "butterfly",
+      "type": "object",
+      "instance_id": 3,
+      "layer": "foreground",
+      "label": "butterfly",
+      "self_moving": true,
+      "appearance": "an orange and black monarch butterfly with white-spotted black wing edges, wings folded upright",
+      "size_m": [0.05, 0.045, 0.012],
+      "shape": "ellipsoid",
+      "semantic": "animal",
+      "position": [0.0, 0.14, 0.025],
+      "heading_deg": 0
+    }
+  ],
+  "S": [
+    {
+      "id": "butterfly_path",
+      "entity": "butterfly",
+      "kind": "root_track",
+      "interp": "linear",
+      "keyframes": [
+        [0.0, [0.0, 0.14, 0.025]],
+        [3.6, [0.0, 0.14, 0.025]],
+        [4.6, [0.055, 0.15, 0.0]],
+        [5.17, [0.055, 0.15, 0.0]]
+      ],
+      "heading": 0
+    }
+  ],
+  "R": [],
+  "D": [
+    {"from": "E.cocoon", "to": "E.caterpillar", "why": "the caterpillar sits inside the cocoon and must overlap it"},
+    {"from": "E.cocoon", "to": "S.butterfly_path", "why": "the butterfly starts hidden behind the cocoon and emerges to its right"},
+    {"from": "S.butterfly_path", "to": "text.timeline", "why": "emergence timing stated in the timeline"},
+    {"from": "C.position", "to": "intent", "why": "macro framing keeps all three large enough"}
+  ],
+  "text": {
+    "scene": "Time-lapse macro close-up with a fixed camera. A thin brown twig crosses the upper part of the frame against blurred green leaves. In the centre of the frame a pale green, semi-translucent teardrop-shaped cocoon with tiny gold dots hangs from the twig, about a quarter of the frame height. Inside it, seen through its thin wall, a striped black, white and yellow caterpillar is curled head-down, filling most of the cocoon. No butterfly is visible yet.",
+    "timeline": [
+      [0.0, 1.8, "Time-lapse: inside the pale green translucent cocoon hanging in the centre of the frame, the striped caterpillar begins morphing into a butterfly; its stripes fade and its body softens and reshapes."],
+      [1.8, 3.6, "Time-lapse: the caterpillar keeps morphing into a butterfly inside the cocoon; the cocoon darkens and turns clear, and folded orange and black wings become visible through its wall."],
+      [3.6, 4.6, "The morphing finishes: the cocoon splits at the bottom and the orange and black butterfly emerges, crawling out from the cocoon toward the right side and climbing onto the twig to the right of the cocoon."],
+      [4.6, 5.17, "The new butterfly hangs from the twig just to the right of the empty, transparent cocoon in the centre, its folded wings slowly expanding and drying."]
+    ],
+    "constraints": [
+      "Exactly one cocoon, one caterpillar and one butterfly; the butterfly is the same creature as the caterpillar after its transformation.",
+      "The morphing happens inside the cocoon; the butterfly appears only after it emerges.",
+      "Fixed camera, time-lapse; no other insects, no on-screen text."
+    ]
+  },
+  "intent": {
+    "expressiveness": "partial",
+    "expressiveness_reason": "The proxies fix the cocoon, the body inside it and the butterfly emerging to the right; the morphing itself is carried only by text.",
+    "requirements": [
+      {"id": "r1", "kind": "present", "entities": ["cocoon"]},
+      {"id": "r2", "kind": "present", "entities": ["caterpillar"], "interval": [0.0, 3.6]},
+      {"id": "r3", "kind": "present", "entities": ["butterfly"], "interval": [4.6, 5.17]},
+      {"id": "r4", "kind": "contact", "a": "caterpillar", "b": "cocoon"},
+      {"id": "r5", "kind": "contact", "a": "butterfly", "b": "cocoon"},
+      {"id": "r6", "kind": "action", "entity": "caterpillar", "phrase": "morphing into a butterfly", "interval": [0.0, 3.6]},
+      {"id": "r7", "kind": "action", "entity": "butterfly", "phrase": "emerges", "interval": [3.6, 4.6]},
+      {"id": "r8", "kind": "relation", "a": "butterfly", "rel": "right_of", "b": "cocoon", "interval": [4.6, 5.17]},
+      {"id": "r9", "kind": "attribute", "entity": "caterpillar", "phrase": "caterpillar"},
+      {"id": "r10", "kind": "attribute", "entity": "cocoon", "phrase": "cocoon"}
+    ]
+  },
+  "notes": "Macro scale in metres. The caterpillar proxy sits just in front of the cocoon's centre to stand for the body seen through the translucent wall. The butterfly proxy (wings folded, thin edge-on sliver) hides behind the cocoon until 3.6 s, then emerges to the right and hangs from the twig."
+}

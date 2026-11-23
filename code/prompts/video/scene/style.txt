@@ -1,0 +1,1 @@
+Visual style of the whole video: {STYLE}

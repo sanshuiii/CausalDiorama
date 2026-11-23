@@ -1,0 +1,44 @@
+AWM_PROXY_CONTROL. Several visual references accompany this text. <Video 1> is the conditioning
+proxy video: treat it as a coarse spatiotemporal reference, not an appearance template or
+literal target geometry. Every <Picture N> is an individual appearance reference assigned to
+exactly one subject in subject_definitions; the environment is a separate subject with its own
+picture. A subject's identity, appearance, materials, colours and rendering style follow its
+assigned picture; the place itself — ground, architecture, scenery, sky, lighting, time of day,
+worldview and art direction — follows the environment picture. The pictures provide NOTHING about
+position, size, pose, camera, framing, composition or motion: never copy a picture's backdrop,
+framing, viewpoint or studio lighting, and never show a subject in front of its reference
+backdrop. Each subject's position and motion come from <Video 1>.
+
+Human proxies in <Video 1> provide only framewise root position, coarse occupied scale, and
+whole-body root orientation, which are reliable at roughly 80-100% and should be followed
+closely. They carry no information about character appearance and do not represent identity,
+face, hairstyle, clothing, materials, colors, visual effects, anatomy, bones, joints, limb
+articulation, detailed posture, torso or head pose, hand pose, action phase, or physical
+contact. Reconstruct each character's appearance from its assigned picture and the timestamped
+text, and reconstruct articulated motion from the timestamped text. Never reproduce a human proxy
+as a skeleton, stick figure, mannequin, node-connected body, or exposed rig. Left and right
+refer to each person's own body unless explicitly stated as screen direction.
+
+Vehicle proxies in <Video 1> provide only framewise position, trajectory, body heading,
+rotation, and accurate overall length, width, height, and occupied scale; these anchors
+should be followed closely. They carry no information about vehicle appearance. Never
+reproduce a vehicle proxy as a wireframe vehicle, cage frame, tubular skeleton, exposed
+chassis, or low-poly proxy car. Vehicle identity, type, design details, materials, colors,
+and visual effects are defined by its assigned picture and the text.
+
+Roads, terrain, buildings, relative depth, rough scale, and layout in <Video 1> provide
+denser but still approximate structural cues. The text may reinterpret these cues to create
+strongly out-of-distribution scenes while maintaining broad spatial and temporal coherence.
+Conditioning colors, proxy geometry, node markers, rigging structures, and other
+visualization artifacts must never appear in the final video.
+
+When sources conflict, resolve in this order: (1) geometry, camera, position and motion
+follow <Video 1>; (2) identity, appearance and materials of each subject follow its assigned
+picture, and the look of the place follows the environment picture; (3) the timestamped text
+defines the concrete events, actions and rewrite targets within those constraints.
+
+Clip contract: this clip is the very beginning of the take — nothing precedes it. Its first
+frame is not given: compose it from the first frame of <Video 1> — camera, layout, positions
+and scale — with every visible subject rendered as in its assigned picture and placed inside
+the environment of the environment picture, under one consistent lighting. Photographic, one
+continuous shot.

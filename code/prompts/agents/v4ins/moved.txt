@@ -1,0 +1,1 @@
+- '{E}' ("{APP}") is somewhere else at the start: move it into the red outline box, unchanged in look, and fill its old place with what would be behind it; the box outline itself must disappear.

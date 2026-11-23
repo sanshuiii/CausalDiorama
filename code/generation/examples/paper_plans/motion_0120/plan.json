@@ -1,0 +1,126 @@
+{
+  "schema": "cb-scm-v1",
+  "scene_id": "motion_0120",
+  "fps": 24,
+  "frames": 124,
+  "C": {
+    "id": "camera",
+    "controller": "fixed",
+    "position": [0.0, 1.45, -2.5],
+    "target": [0.0, 1.0, 0.0],
+    "vertical_fov_deg": 35,
+    "motion": "Fixed camera."
+  },
+  "style": "photorealistic live-action footage, warm natural indoor kitchen light, true-to-life colours",
+  "background": {
+    "appearance": "An empty bright bakery kitchen interior: a pale cream tiled back wall with a few white shelves, warm overhead lighting, soft shadows, light grey floor."
+  },
+  "environment": {
+    "ground": {"semantic": "building_structure", "color": [0.75, 0.75, 0.75]},
+    "sky": false,
+    "backdrop": [
+      {"id": "back_wall", "z": 1.6, "x_range": [-5, 5], "height": 3.5, "semantic": "building_structure", "color": [0.93, 0.9, 0.82]}
+    ],
+    "static_props": [],
+    "description": "A bright bakery kitchen with a cream tiled back wall, warm overhead light and soft shadows; photorealistic."
+  },
+  "E": [
+    {
+      "id": "counter",
+      "type": "object",
+      "instance_id": 1,
+      "layer": "foreground",
+      "label": "counter",
+      "appearance": "a long kitchen counter with a smooth white marble top and light wooden cabinet front",
+      "size_m": [5.0, 0.9, 0.7],
+      "shape": "box",
+      "semantic": "prop",
+      "position": [0.0, 0.0, 0.1],
+      "heading_deg": 90
+    },
+    {
+      "id": "cake",
+      "type": "object",
+      "instance_id": 2,
+      "layer": "foreground",
+      "label": "cake",
+      "appearance": "a large round two-tier cake covered in white frosting with pink piped rosettes and fresh strawberries on top, sitting on a flat silver cake board",
+      "size_m": [0.5, 0.4, 0.5],
+      "shape": "box",
+      "semantic": "prop",
+      "position": [0.85, 0.9, 0.0],
+      "heading_deg": 90
+    },
+    {
+      "id": "hand",
+      "type": "object",
+      "instance_id": 3,
+      "layer": "foreground",
+      "label": "hand",
+      "self_moving": true,
+      "appearance": "a person's bare hand and forearm in a rolled-up white chef's sleeve, reaching in from the right edge of the frame, palm flat against the cake's side",
+      "size_m": [0.6, 0.12, 0.12],
+      "shape": "ellipsoid",
+      "semantic": "human",
+      "position": [1.38, 1.0, 0.0],
+      "heading_deg": 90
+    }
+  ],
+  "S": [
+    {
+      "id": "cake_path",
+      "entity": "cake",
+      "kind": "root_track",
+      "interp": "linear",
+      "keyframes": [[0.0, [0.85, 0.9, 0.0]], [0.2, [0.85, 0.9, 0.0]], [4.8, [-0.65, 0.9, 0.0]]],
+      "heading": 90
+    },
+    {
+      "id": "hand_path",
+      "entity": "hand",
+      "kind": "root_track",
+      "interp": "linear",
+      "keyframes": [[0.0, [1.38, 1.0, 0.0]], [0.2, [1.38, 1.0, 0.0]], [4.8, [-0.12, 1.0, 0.0]]],
+      "heading": 90
+    }
+  ],
+  "R": [
+    {"id": "push_cake", "type": "hold", "object": "cake", "holder": "hand", "start": 0.2, "end": 4.8, "mode": "guide"}
+  ],
+  "D": [
+    {"from": "S.cake_path", "to": "S.hand_path", "why": "the hand stays against the cake's right side while pushing it, so both tracks move in parallel"},
+    {"from": "E.counter", "to": "E.cake", "why": "the cake rests on the counter top at y = 0.9"},
+    {"from": "S.cake_path", "to": "text.timeline", "why": "timeline restates the leftward push with start and end screen regions"},
+    {"from": "C.position", "to": "S.cake_path", "why": "path spans about 53 % of the visible width at the cake's depth"}
+  ],
+  "text": {
+    "scene": "Photorealistic bakery kitchen, fixed eye-level camera looking slightly down at a long white marble counter that runs across the whole lower half of the frame. At t = 0 a large round two-tier cake with white frosting, pink rosettes and strawberries sits on the counter near the right edge of the frame, about a quarter of the frame height tall. A person's hand and forearm in a white chef's sleeve reaches in from the right edge, palm flat against the cake's right side, ready to push it left; the cake and the hand are at the same distance from the camera. The cake is about to be pushed left across the counter, from the right edge toward the left side of the frame.",
+    "timeline": [
+      [0.0, 1.7, "The hand in the white sleeve pushes the large white frosted cake left across the counter, sliding it from the right edge of the frame toward the right of centre; the cake stays upright on the marble counter top."],
+      [1.7, 3.3, "The large cake keeps being pushed left across the counter by the hand, sliding steadily from right of centre past the centre of the frame toward the left side."],
+      [3.3, 4.8, "The hand keeps pushing the large cake left across the counter, sliding it from just left of centre to the left side of the frame, the cake still upright and intact."],
+      [4.8, 5.17, "The large cake comes to rest on the counter on the left side of the frame, having been pushed left across the counter from the right edge; the hand stays against its right side."]
+    ],
+    "constraints": [
+      "Exactly one cake and one counter.",
+      "The cake slides left only, along the counter top, never lifted, tipped or turned.",
+      "The cake stays upright and intact on the counter for the whole shot.",
+      "Fixed camera, no on-screen text, no other people or objects."
+    ]
+  },
+  "intent": {
+    "expressiveness": "full",
+    "expressiveness_reason": "The proxies show the large cake on the counter being pushed by a hand from the right edge to the left side; only surface appearance comes from text.",
+    "requirements": [
+      {"id": "r1", "kind": "present", "entities": ["cake", "counter"]},
+      {"id": "r2", "kind": "count", "noun": "cake", "n": 1, "entities": ["cake"]},
+      {"id": "r3", "kind": "motion", "entity": "cake", "direction": "left", "interval": [0.2, 4.8]},
+      {"id": "r4", "kind": "relation", "a": "cake", "rel": "on_top_of", "b": "counter"},
+      {"id": "r5", "kind": "attribute", "entity": "cake", "phrase": "large"},
+      {"id": "r6", "kind": "action", "entity": "cake", "phrase": "pushed left across the counter"},
+      {"id": "r7", "kind": "contact", "a": "cake", "b": "counter"},
+      {"id": "r8", "kind": "contact", "a": "hand", "b": "cake"}
+    ]
+  },
+  "notes": "Passive 'is pushed' implies a pusher; a minimal hand/forearm reaching in from the right edge is used as the self-moving cause (guide hold). Camera 2.5 m from cake; visible width ~2.84 m; cake moves 1.5 m (~53 % of frame) from right edge to left side, linear 0.2-4.8 s."
+}

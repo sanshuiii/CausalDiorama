@@ -1,0 +1,108 @@
+{
+  "schema": "cb-scm-v1",
+  "scene_id": "spatial_0006",
+  "fps": 24,
+  "frames": 124,
+  "C": {
+    "id": "camera",
+    "controller": "fixed",
+    "position": [0.0, 1.6, -8.0],
+    "target": [0.0, 2.0, 0.0],
+    "vertical_fov_deg": 35,
+    "motion": "Fixed camera."
+  },
+  "style": "photorealistic live-action footage, natural daylight colours",
+  "background": {
+    "appearance": "An open grassy park meadow on a clear afternoon, short green grass, a line of distant green shrubs at the far edge, soft blue sky with a few thin clouds, warm natural sunlight."
+  },
+  "environment": {
+    "ground": {"semantic": "terrain", "color": [0.35, 0.55, 0.25]},
+    "sky": true,
+    "backdrop": [
+      {"id": "far_shrubs", "z": 25.0, "x_range": [-30, 30], "height": 2.5, "semantic": "vegetation", "color": [0.25, 0.4, 0.2]}
+    ],
+    "static_props": [],
+    "description": "A sunny grassy park meadow with short green grass, distant shrubs along the horizon and a soft blue sky; warm natural afternoon light, photorealistic."
+  },
+  "E": [
+    {
+      "id": "photographer",
+      "type": "human",
+      "instance_id": 1,
+      "layer": "foreground",
+      "label": "photographer",
+      "height_m": 1.78,
+      "appearance": "an adult photographer in a khaki vest over a navy t-shirt, dark jeans and brown boots, a camera strap around the neck"
+    },
+    {
+      "id": "tripod",
+      "type": "object",
+      "instance_id": 2,
+      "layer": "foreground",
+      "label": "tripod",
+      "size_m": [0.4, 1.6, 0.4],
+      "shape": "box",
+      "semantic": "prop",
+      "position": [-1.6, 0.0, 0.0],
+      "heading_deg": 90,
+      "appearance": "a black aluminium camera tripod with three extendable legs and a small mounting head"
+    },
+    {
+      "id": "tree",
+      "type": "object",
+      "instance_id": 3,
+      "layer": "foreground",
+      "label": "tree",
+      "size_m": [1.8, 4.0, 1.8],
+      "shape": "ellipsoid",
+      "semantic": "vegetation",
+      "position": [1.8, 0.0, 0.5],
+      "heading_deg": 90,
+      "appearance": "a single leafy deciduous tree with a brown trunk and a full rounded green canopy"
+    }
+  ],
+  "S": [
+    {"id": "photographer_path", "entity": "photographer", "kind": "root_track", "interp": "linear",
+     "keyframes": [[0.0, [-1.9, 0.0]], [5.17, [-1.9, 0.0]]], "heading": 90},
+    {"id": "tripod_path", "entity": "tripod", "kind": "root_track", "interp": "linear",
+     "keyframes": [[0.0, [-1.6, 0.0, 0.0]], [5.17, [-1.6, 0.0, 0.0]]], "heading": 90}
+  ],
+  "R": [
+    {"id": "setup_hold", "type": "hold", "object": "tripod", "holder": "photographer", "start": 0.3, "end": 4.9, "mode": "guide"}
+  ],
+  "D": [
+    {"from": "E.tree.position", "to": "E.tripod.position", "why": "tripod must stay screen-left of the tree"},
+    {"from": "E.tripod.position", "to": "S.tripod_path", "why": "tripod track stays at its placed position while being set up"},
+    {"from": "E.tripod.position", "to": "R.setup_hold", "why": "photographer stands within arm's reach of the tripod"},
+    {"from": "E.tree.position", "to": "text.scene", "why": "text states the left/right layout"}
+  ],
+  "text": {
+    "scene": "Fixed camera at eye level facing a sunny grassy park. At t = 0, on the left side of the frame stands a photographer in a khaki vest, navy t-shirt and dark jeans, about 40% of the frame height, in profile facing screen right toward a black aluminium tripod that stands just to his right, also on the left half of the frame, about a third of the frame height. On the right side of the frame, slightly farther away, stands a single leafy green tree with a brown trunk, filling about two thirds of the frame height. The photographer and the tripod are both to the left of the tree, side by side at the same distance from the camera, his hands on the tripod.",
+    "timeline": [
+      [0.0, 1.7, "On the left of the tree, the photographer in the khaki vest begins setting up the black tripod: he grips it with both hands and spreads its three legs on the grass, the tripod staying to the left of the tree on the right side of the frame."],
+      [1.7, 3.5, "The photographer keeps setting up the tripod on the left of the tree, extending and locking each leg so the tripod stands level; the leafy tree stays still on the right side of the frame."],
+      [3.5, 5.17, "The photographer finishes setting up the tripod on the left of the tree, tightening the mounting head and adjusting its height; the tripod stands upright beside him, both left of the tree on the right side of the frame."]
+    ],
+    "constraints": [
+      "Exactly one photographer, exactly one tripod and exactly one tree.",
+      "The photographer and the tripod stay on the left of the tree for the whole shot.",
+      "The tree does not move; the camera does not move.",
+      "No other people, no on-screen text."
+    ]
+  },
+  "intent": {
+    "expressiveness": "partial",
+    "expressiveness_reason": "The left-of-the-tree layout is in the proxies; the photographer's setting-up hand actions on the tripod are carried by the text.",
+    "requirements": [
+      {"id": "r1", "kind": "present", "entities": ["photographer", "tripod", "tree"]},
+      {"id": "r2", "kind": "relation", "a": "tripod", "rel": "left_of", "b": "tree"},
+      {"id": "r3", "kind": "relation", "a": "photographer", "rel": "left_of", "b": "tree"},
+      {"id": "r4", "kind": "action", "entity": "photographer", "phrase": "setting up the tripod"},
+      {"id": "r5", "kind": "count", "noun": "photographer", "n": 1, "entities": ["photographer"]},
+      {"id": "r6", "kind": "count", "noun": "tripod", "n": 1, "entities": ["tripod"]},
+      {"id": "r7", "kind": "count", "noun": "tree", "n": 1, "entities": ["tree"]},
+      {"id": "r8", "kind": "contact", "a": "photographer", "b": "tripod"}
+    ]
+  },
+  "notes": "Photographer stands still at x=-1.9 facing screen right, within arm's reach (0.3 m) of the tripod at x=-1.6; tree at x=1.8 on the right. Setting-up motions are text only."
+}
