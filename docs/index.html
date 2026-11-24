@@ -6,14 +6,30 @@
 <title>Causal Dioramas</title>
 <meta name="description" content="Causal Dioramas: Controllable Video Generation, Revision and Editing via Intervention">
 <link rel="icon" href="static/images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=Pinyon+Script&display=swap">
 <link rel="stylesheet" href="static/css/style.css">
+<link rel="stylesheet" href="static/css/theme.css">
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
+<div class="stage" id="stage">
+<div class="stage-pin" id="stage-pin">
+<div class="curtain" id="curtain" aria-hidden="true">
+  <div class="drape l"></div><div class="drape r"></div>
+  <div class="marquee" id="marquee">
+    <span class="mq-title">Causal Dioramas</span>
+    <span class="mq-rule"></span>
+    <span class="mq-hint">Scroll to open the curtain<i></i></span>
+  </div>
+</div>
+<div class="valance" aria-hidden="true"></div>
 <header class="hero">
   <div class="wrap">
     <img class="logo" src="static/images/logo.png" alt="">
-    <h1>Causal Dioramas: Controllable Video Generation,<br>Revision and Editing via Intervention</h1>
+    <h1><span class="t-main">Causal Dioramas<span class="vh">:</span></span><span class="t-orn" aria-hidden="true"></span><span class="t-sub">Controllable Video Generation, Revision and Editing via Intervention</span></h1>
     <p class="authors"></p>
     <div class="buttons">
       <a class="btn" href="https://github.com/sanshuiii/CausalDiorama/raw/main/paper/CausalDiorama.pdf">
@@ -28,13 +44,15 @@
   </div>
 </header>
 
-<section id="video" style="padding-top:8px">
+<section id="video">
   <div class="wrap video-hero">
     <video controls preload="metadata" poster="static/images/pv_poster.jpg">
       <source src="static/videos/pv.mp4" type="video/mp4">
     </video>
   </div>
 </section>
+</div>
+</div>
 
 <section id="abstract">
   <div class="wrap">
@@ -103,12 +121,13 @@
 </section>
 
 
-<footer><div class="wrap"></div></footer>
+<footer><div class="wrap"><span class="fleuron" aria-hidden="true"></span></div></footer>
 
 <script src="static/js/cases.js"></script>
 <script src="static/js/main.js"></script>
 <script src="static/js/graph.js"></script>
 <script src="static/js/gallery.js"></script>
 <script src="static/js/mvgrid.js"></script>
+<script src="static/js/theatre.js"></script>
 </body>
 </html>
