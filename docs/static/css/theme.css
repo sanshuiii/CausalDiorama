@@ -151,4 +151,9 @@ footer{padding:36px 0 60px}
   .gchev{width:40px;height:40px}.gchev svg{width:13px;height:21px}
 }
 .input b,.m-instr b{font-style:normal;font-weight:600}
-.btn.disabled{font-variant-caps:normal}
+.btn.disabled,.btn-arxiv{font-variant-caps:normal}
+/* BibTeX */
+.bibbox{position:relative;max-width:960px;margin:0 auto}
+.bibtex{margin:0;background:#fbf6ea;border:1px solid var(--gold);border-radius:0;box-shadow:0 0 0 5px #fbf6ea,0 0 0 6px rgba(184,145,63,.6);padding:22px 26px;color:var(--ink);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;min-height:0}
+.bibcopy{position:absolute;top:10px;right:10px;z-index:1;border:0;cursor:pointer;padding:5px 14px;border-radius:3px;background:var(--brass);color:#3d2808;font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:600;font-size:15px;font-variant-caps:small-caps;letter-spacing:.06em;text-shadow:0 1px 0 rgba(255,244,205,.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 0 0 1px #6b4a17,0 2px 5px rgba(60,35,5,.3)}
+#bibtex h2{font-variant-caps:normal}

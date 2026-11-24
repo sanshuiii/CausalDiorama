@@ -46,3 +46,9 @@
   const io=new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('shown'); io.unobserve(en.target); } }),{rootMargin:'0px 0px -8% 0px'});
   secs.forEach(s=>{ s.classList.add('reveal'); io.observe(s); });
 })();
+
+/* Copy button for the BibTeX entry. */
+(function(){
+  const b=document.querySelector('.bibcopy'), code=document.querySelector('.bibtex code'); if(!b||!code) return;
+  b.addEventListener('click',async()=>{ try{ await navigator.clipboard.writeText(code.textContent); b.textContent='Copied'; }catch(e){ const r=document.createRange(); r.selectNodeContents(code); const s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Selected'; } setTimeout(()=>b.textContent='Copy',1600); });
+})();

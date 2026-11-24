@@ -5,8 +5,8 @@
 <h1 align="center">Causal Dioramas: Controllable Video Generation,<br>Revision and Editing via Intervention</h1>
 
 <p align="center">
-  <a href="paper/CausalDiorama.pdf"><b>Paper (PDF)</b></a> &nbsp;·&nbsp;
-  <img src="assets/arxiv-soon.svg" alt="arXiv: coming soon" align="absmiddle"> &nbsp;·&nbsp;
+  <a href="https://arxiv.org/pdf/2611.28098"><b>Paper</b></a> &nbsp;·&nbsp;
+  <a href="https://arxiv.org/abs/2611.28098"><img src="https://img.shields.io/badge/arXiv-2611.28098-b31b1b.svg" alt="arXiv:2611.28098" align="absmiddle"></a> &nbsp;·&nbsp;
   <a href="https://sanshuiii.github.io/CausalDiorama/"><b>Project page</b></a> &nbsp;·&nbsp;
   <a href="code/README.md"><b>Code</b></a>
 </p>
@@ -90,3 +90,17 @@ python3 bin/cd_edit.py --video in.mp4 --instruction "Replace the background with
 ```
 
 `--agent claude-code` runs each agent task as a Claude Code process instead of the API.
+
+## Citation
+
+```bibtex
+@misc{shen2026causaldioramascontrollablevideo,
+      title={Causal Dioramas: Controllable Video Generation, Revision and Editing via Intervention},
+      author={Yifan Shen and Xinyi Yang and Peiyuan Zhu and Yichang Jian and Jinyuan Hu and Xilin He and Fengming Zhu and Guangyi Chen and Kun Zhang},
+      year={2026},
+      eprint={2611.28098},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2611.28098},
+}
+```
