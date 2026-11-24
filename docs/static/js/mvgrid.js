@@ -14,11 +14,11 @@
     g.appendChild(Object.assign(document.createElement('div'),{className:'mvcorner'}));
     subjects.forEach(([k,label])=>{const h=document.createElement('div');h.className='mvcol';h.textContent=label;g.appendChild(h);});
     bgs.forEach(([bk,blabel])=>motions.forEach(([mk,mlabel])=>{
-      const r=document.createElement('div'); r.className='mvrow'; r.innerHTML='<b>'+blabel+'</b><span>'+(mk==='original'?'original motion':'swims in from the right')+'</span>'; g.appendChild(r);
+      const r=document.createElement('div'); r.className='mvrow'; r.innerHTML='<b>'+blabel+'</b><span>'+(mk==='original'?'Original motion':'Swims in from the right')+'</span>'; g.appendChild(r);
       subjects.forEach(([sk])=>{ const w=byKey[bk+'|'+sk+'|'+mk]; const t=document.createElement('div'); t.className='mvtile'+(w&&w.source?' src':'');
         if(!w){ t.classList.add('empty'); g.appendChild(t); return; }
         const v=document.createElement('video'); v.muted=true; v.loop=true; v.playsInline=true; v.preload='none'; v.poster=poster(w.video); v.dataset.src=thumb(w.video); v.style.aspectRatio=set.aspect;
-        t.appendChild(v); if(w.source){const s=document.createElement('span');s.className='mvsrc';s.textContent='source';t.appendChild(s);}
+        t.appendChild(v); if(w.source){const s=document.createElement('span');s.className='mvsrc';s.textContent='Source';t.appendChild(s);}
         g.appendChild(t); tiles.push({v,w,t});
       });
     }));

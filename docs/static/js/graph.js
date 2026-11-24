@@ -9,7 +9,7 @@
     { key:'do', btn:'Intervention', label:'Counterfactual', video:'ours_shot.mp4' },
     { key:'nodep', btn:'Without dependencies', label:'Without dependencies', video:'nocausal.mp4' }
   ];
-  const INSTR='player in red <b>shoots directly</b> and scores.';
+  const INSTR='Player in red <b>shoots directly</b> and scores.';
   const host=document.getElementById('m-graph'); if(!host) return;
   const ch=document.getElementById('m-choices'), out=document.getElementById('m-result'), ins=document.getElementById('m-instruction');
   ins.innerHTML=INSTR;
